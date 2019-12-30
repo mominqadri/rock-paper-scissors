@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <script>
+
+    function computerPlay(){
+        pick = Math.floor(Math.random() * Math.floor(3))
+        if (pick == 0){
+            return "Rock";
+        }
+        else if (pick == 1){
+            return "Paper";
+        }
+        return "Scissors";
+    }
+
+    function capitalize(word){
+        let first = word[0].toUpperCase()
+        let newWord = first + word.substring(1)
+        return newWord
+    }
+
+    function playRound(playerSelection, computerSelection){
+        playerSelection =  capitalize(playerSelection);
+        computerSelection = capitalize(computerSelection);
+
+        if (playerSelection == computerSelection){
+            console.log("It's a draw! \n");
+            return "Draw";
+        }
+        else if (
+            (playerSelection == "Rock" && computerSelection == "Paper") || 
+            (playerSelection == "Scissors" && computerSelection == "Rock") ||
+            (playerSelection == "Paper" && computerSelection == "Scissors")){
+            console.log(`You Lose! ${computerSelection} beats ${playerSelection}\n`);  
+            return "Loss"; 
+        }
+        else{
+            console.log(`You Win! ${playerSelection} beats ${computerSelection}\n`); 
+            return "Win";
+        }
+    }
+
+    function game(){
+        let yourScore = 0;
+        let cpuScore = 0;
+        for (let i = 0; i < 5; i++){
+            let pick = prompt("Select rock, paper or scissors: ");
+            let round = playRound(pick, computerPlay());
+            while (round == "Draw"){
+                pick = prompt("Select rock, paper or scissors: ");
+                round = playRound(pick, computerPlay());
+            }
+
+            if (round == "Win"){
+                yourScore++;
+            }
+            else if (round == "Loss"){
+                cpuScore++;
+            }
+        }
+        if (yourScore > cpuScore){
+            console.log(`Congratulations! You win the game ${yourScore} to ${cpuScore}.\n`)
+        }
+        else {
+            console.log(`You lost the game ${yourScore} to ${cpuScore}.\n`)
+        }
+    }
+
+    game()
+    </script>
+</html>
