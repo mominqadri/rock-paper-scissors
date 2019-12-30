@@ -1,0 +1,1 @@
+Basic representation of a game of rock, paper, scissors.
